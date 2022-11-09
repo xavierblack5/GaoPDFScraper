@@ -20,6 +20,7 @@ inFileName = args.i
 if not ".pdf" in inFileName:
     print("Input must be a pdf")
     sys.exit()
+
 # creating a pdf file object 
 pdfFileObj = open(inFileName, 'rb') 
     
@@ -50,7 +51,7 @@ if 'MEN' == read1.group(2):
     if 'III' == read1.group(1):
         distance = 8
 else:
-    gender = 0
+    gender = 2
     distance = 6
 l = read1.group(1)
 
