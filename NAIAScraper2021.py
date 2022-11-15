@@ -5,7 +5,6 @@ import tabula as tb
 import tabulate as tbl
 import pandas as pd
 import re
-import PyPDF2 
 import csv
 import argparse
 
