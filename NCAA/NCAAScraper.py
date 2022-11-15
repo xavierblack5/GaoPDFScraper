@@ -24,7 +24,7 @@ file_list = glob.glob("*.pdf")
 for j in file_list:
     # creating a pdf reader object 
     pdfReader = PyPDF2.PdfFileReader(j) 
-    # creating a page object for page 1 and 2
+    # creating a page object for page
     pageObj1 = pdfReader.getPage(0) 
     pageObj2 = pdfReader.getPage(2)
     pageObj3 = pdfReader.getPage(3)
@@ -44,19 +44,18 @@ for j in file_list:
         gender = 2
         distance = 6
     l = read1.group(1)
-    
     # grab text data pages
     text2 = str(pageObj2.extract_text())
     text3 = str(pageObj3.extract_text())
-
     # Scrape first data page, convert to seconds and write to csv
-    read2 = re.findall("(\d{1,3}) [^,\n]*\s*,\s*[^,]*\s*,\s*[^,]*\s*,\s*(\d+:\d+\.\d)",text2)
+    read2 = re.findall("(\d{1,3})\.* [^,\n]*\s*,\s*[^,]*\s*,\s*[^,]*\s*,*\s+(\d+:\d+\.\d)",text2)
     for i in range(len(read2)):
         readTime = re.search("(\d{2}):(\d{2}\.\d)", read2[i][1])
         time = int(readTime.group(1))*60 + float(readTime.group(2))
         data = [read2[i][0], gender, time, distance, level[l], year]
         writer.writerow(data)
-    read3 = re.findall("(\d{1,3}) [^,\n]*\s*,\s*[^,]*\s*,\s*[^,]*\s*,\s*(\d+:\d+\.\d)",text3)
+
+    read3 = re.findall("(\d{1,3})\.* [^,\n]*\s*,\s*[^,]*\s*,\s*[^,]*\s*,*\s+(\d+:\d+\.\d)",text3)
     for i in range(len(read3)):
         readTime = re.search("(\d{2}):(\d{2}\.\d)", read3[i][1])
         time = int(readTime.group(1))*60 + float(readTime.group(2))
