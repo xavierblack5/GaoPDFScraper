@@ -1,8 +1,6 @@
 from ast import arg
 from base64 import encode
 import sys
-import tabula as tb
-import pandas as pd
 import re
 import PyPDF2 
 import csv
@@ -23,11 +21,11 @@ writer.writerow(header)
 file_list = glob.glob("*.pdf")
 for j in file_list:
     # creating a pdf reader object 
-    pdfReader = PyPDF2.PdfFileReader(j) 
+    pdfReader = PyPDF2.PdfReader(j) 
     # creating a page object for page
-    pageObj1 = pdfReader.getPage(0) 
-    pageObj2 = pdfReader.getPage(2)
-    pageObj3 = pdfReader.getPage(3)
+    pageObj1 = pdfReader.pages[0] 
+    pageObj2 = pdfReader.pages[2]
+    pageObj3 = pdfReader.pages[3]
     # grab text from first page
     text1 = str(pageObj1.extract_text())
     # Scrape year from the pdf

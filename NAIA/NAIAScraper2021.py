@@ -1,9 +1,6 @@
 from ast import arg
 from base64 import encode
 import PyPDF2
-import tabula as tb
-import tabulate as tbl
-import pandas as pd
 import re
 import csv
 import glob
@@ -13,7 +10,7 @@ distances = {'Men': '8', 'Women': '5'}
 level = {'I': '1', 'II': '2','III': '3'}
 
 # Open csv file
-outName = "NAIA2021_Results.csv"
+outName = "NAIA_Results.csv"
 header = ['Place', 'Gender', 'Time', 'Distance', 'Level', 'Year']
 f = open(outName, 'w', newline='')
 writer = csv.writer(f)
@@ -24,10 +21,10 @@ distance = 8
 
 file_list = glob.glob("*.pdf")
 for j in file_list:
-    pdfReader = PyPDF2.PdfFileReader(j) 
-    num_of_pages = pdfReader.getNumPages()
+    pdfReader = PyPDF2.PdfReader(j) 
+    num_of_pages = len(pdfReader.pages)
     for i in range(num_of_pages):
-        pageObj = pdfReader.getPage(i)
+        pageObj = pdfReader.pages[i]
         text = str(pageObj.extract_text())
         if i == 0:
             read0 = re.search("\d{2}/\d{2}/(\d{4})",text)

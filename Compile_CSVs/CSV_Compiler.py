@@ -1,9 +1,6 @@
 from ast import arg
 from base64 import encode
 import glob
-import tabula as tb
-import tabulate as tbl
-import pandas as pd
 import csv
 
 
@@ -20,7 +17,8 @@ for j in file_list:
         r=open(j, 'r')
         reader = csv.reader(r)
         for data in reader:
-            writer.writerow(data)
+            if(data[0] != 'Place'):
+                writer.writerow(data)
         print("Finished " + j)
         r.close()
    
