@@ -13,8 +13,8 @@ The NAIA scraper works with this command and with the format starting from 2021
 
 `./NAIAScraper.exe`
 
-The csv compiler works with this command and with the format starting from 2021
+The csv compiler works with this command and will append all of the csv files of the format from the other scrapers together into one csv of the name XC_results.csv
 
-`./NAIAScraper.exe`
+`./CSV_Compiler.exe`
 
 All of the executables will read all of the csv files in the folder with them and compile them into a result csv.
